@@ -34,7 +34,7 @@ const MainNavbar = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-transparent">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Zwiń menu" : "Rozwiń menu"}
@@ -57,8 +57,8 @@ const MainNavbar = () => {
           <Link href="#">Zaloguj się</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Założ konto
+          <Button as={Link} color="primary" href="#" variant="solid">
+            Załóż konto
           </Button>
         </NavbarItem>
       </NavbarContent>
