@@ -53,7 +53,7 @@ const MainNavbar = () => {
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+        <NavbarItem className="hidden md:flex">
           <Link href="#">Zaloguj się</Link>
         </NavbarItem>
         <NavbarItem>
