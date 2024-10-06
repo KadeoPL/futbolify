@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div>
         <h1>Zarządzaj swoim klubem sportowym z łatwością!</h1>
 
-        <p>
+        <p className="text-medium-normal">
           Nasza aplikacja pomaga Ci w zarządzaniu terminarzem, składem, wynikami
           i stroną internetową. Skup się na sporcie, a my zajmiemy się resztą.
         </p>

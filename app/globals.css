@@ -14,10 +14,111 @@ body {
   background: var(--background);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .text-large-light {
+    @apply font-light text-[20px] leading-[120%];
   }
+
+  .text-large-normal {
+    @apply font-normal text-[20px] leading-[120%];
+  }
+
+  .text-large-medium {
+    @apply font-medium text-[20px] leading-[120%];
+  }
+
+  .text-large-semibold {
+    @apply font-semibold text-[20px] leading-[120%];
+  }
+
+  .text-large-bold {
+    @apply font-bold text-[20px] leading-[120%];
+  }
+
+  .text-large-extrabold {
+    @apply font-extrabold text-[20px] leading-[120%];
+  }
+
+  .text-medium-light {
+    @apply font-light text-[18px] leading-[120%];
+  }
+
+  .text-medium-normal {
+    @apply font-normal text-[18px] leading-[120%];
+  }
+
+  .text-medium-medium {
+    @apply font-medium text-[18px] leading-[120%];
+  }
+
+  .text-medium-semibold {
+    @apply font-semibold text-[18px] leading-[120%];
+  }
+
+  .text-medium-bold {
+    @apply font-bold text-[18px] leading-[120%];
+  }
+
+  .text-regular-light {
+    @apply font-light text-[16px] leading-[120%];
+  }
+
+  .text-regular-normal {
+    @apply font-normal text-[16px] leading-[120%];
+  }
+
+  .text-regular-medium {
+    @apply font-medium text-[16px] leading-[120%];
+  }
+
+  .text-regular-semibold {
+    @apply font-semibold text-[16px] leading-[120%];
+  }
+
+  .text-regular-bold {
+    @apply font-bold text-[16px] leading-[120%];
+  }
+
+  .text-small-light {
+    @apply font-light text-[14px] leading-[120%];
+  }
+
+  .text-small-normal {
+    @apply font-normal text-[14px] leading-[120%];
+  }
+
+  .text-small-medium {
+    @apply font-medium text-[14px] leading-[120%];
+  }
+
+  .text-small-semibold {
+    @apply font-semibold text-[14px] leading-[120%];
+  }
+
+  .text-small-bold {
+    @apply font-bold text-[14px] leading-[120%];
+  }
+
+  .text-tiny-light {
+    @apply font-light text-[12px] leading-[120%];
+  }
+
+  .text-tiny-normal {
+    @apply font-normal text-[12px] leading-[120%];
+  }
+
+  .text-tiny-medium {
+    @apply font-medium text-[12px] leading-[120%];
+  }
+
+  .text-tiny-semibold {
+    @apply font-semibold text-[12px] leading-[120%];
+  }
+
+  .text-tiny-bold {
+    @apply font-bold text-[12px] leading-[120%];
+  }
+
 }
 
 @layer base {
@@ -69,4 +170,5 @@ body {
     leading-[140%]
     md:text-[20px]
   }
+
 }
