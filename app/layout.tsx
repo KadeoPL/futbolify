@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased min-h-screen`}>
+      <body className={`${inter.className} antialiased min-h-screen w-full`}>
         <NextUIProvider>
           <main>
             <MainNavbar />

@@ -9,7 +9,11 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        "1440": "1440px",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

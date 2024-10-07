@@ -34,7 +34,11 @@ const MainNavbar = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-transparent">
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="bg-transparent"
+      maxWidth="2xl"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Zwiń menu" : "Rozwiń menu"}
