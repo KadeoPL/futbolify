@@ -4,19 +4,9 @@ import { Button } from "@nextui-org/react";
 
 const PricingSection = () => {
   const [isMonthly, setIsMonthly] = React.useState(true);
-  const [monthly, setMonthly] = React.useState<"solid" | "flat">("solid");
-  const [yearly, setYearly] = React.useState<"solid" | "flat">("flat");
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = event.currentTarget;
-    if (value === "monthly") {
-      setMonthly("solid");
-      setYearly("flat");
-      setIsMonthly(!isMonthly);
-    } else {
-      setMonthly("flat");
-      setYearly("solid");
-      setIsMonthly(!isMonthly);
-    }
+    setIsMonthly(value === "monthly");
   };
   return (
     <section className="flex flex-col text-center mt-32">
@@ -26,7 +16,7 @@ const PricingSection = () => {
       <div className="flex gap-4 mx-auto mt-16">
         <Button
           color="primary"
-          variant={monthly}
+          variant={isMonthly ? "solid" : "flat"}
           onClick={handleClick}
           value="monthly"
         >
@@ -34,7 +24,7 @@ const PricingSection = () => {
         </Button>
         <Button
           color="primary"
-          variant={yearly}
+          variant={!isMonthly ? "solid" : "flat"}
           onClick={handleClick}
           value="yearly"
         >
