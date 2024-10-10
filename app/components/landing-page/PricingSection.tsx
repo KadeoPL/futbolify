@@ -78,20 +78,34 @@ const PricingSection = () => {
           Roczny
         </Button>
       </div>
-      <div className="flex flex-col md:flex-row md:flex-nowrap gap-10">
+      <div className="flex flex-col md:flex-row md:flex-nowrap gap-10 mt-12">
         {subscriptionPlans.map((plan, index) => (
-          <Card key={index} isPressable onPress={() => console.log("Click")}>
-            <CardBody className="flex flex-col justify-center text-center">
-              <h6>{plan.name}</h6>
+          <Card
+            key={index}
+            isPressable
+            onPress={() => console.log("Click")}
+            className="bg-transparent border-2 border-primary-100"
+          >
+            <CardBody className="flex flex-col justify-center text-center text-default-100 p-6 hover:bg-primary-100 hover:text-default-800">
+              <h6 className="text-primary mb-2">{plan.name}</h6>
               <p className="text-small-light">{plan.description}</p>
-              <h1>{isMonthly ? plan.monthlyPrice : plan.yearlyPrice} zł</h1>
+              <h1 className="my-6">
+                {isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+                <span className="font-light text-xl text-default-500">zł</span>
+              </h1>
               {isMonthly ? null : (
-                <h3>{plan.monthlyPrice * 12 - plan.yearlyPrice}</h3>
+                <div className="w-full flex justify-center items-center bg-primary rounded-full gap-2 mb-6">
+                  <h1 className="font-light text-xl text-default-200">
+                    Oszczędzasz
+                  </h1>
+                  <h3>{plan.monthlyPrice * 12 - plan.yearlyPrice}</h3>
+                  <h1 className="font-light text-xl text-default-200">zł</h1>
+                </div>
               )}
               <ul className="text-left">
                 {plan.functions.map((func, index) => (
                   <li key={index} className="flex gap-2 items-center mb-2">
-                    <Check size={16} />
+                    <Check size={16} className="text-primary" />
                     {func}
                   </li>
                 ))}
