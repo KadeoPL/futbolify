@@ -27,31 +27,35 @@ const PricingSection = () => {
       ],
     },
     {
-      name: "Team Starter",
+      name: "Pro Squad",
       description:
-        "Idealne dla małych drużyn, które potrzebują podstawowych narzędzi do zarządzania.",
-      monthlyPrice: 49,
-      yearlyPrice: 499,
+        "Dla zespołów średniej wielkości, które chcą bardziej zaawansowanych funkcji i większej personalizacji.",
+      monthlyPrice: 99,
+      yearlyPrice: 999,
       functions: [
-        "Zarządzanie drużyną (do 15 zawodników)",
-        "Terminarz meczów (do 10 wydarzeń)",
-        "Podstawowe statystyki zawodników",
-        "Podstawowa strona drużyny (szablon)",
-        "Powiadomienia e-mail o nadchodzących meczach",
+        "Wszystkie funkcje z Team Starter",
+        "Zarządzanie drużyną (do 30 zawodników)",
+        "Nieograniczona liczba meczów",
+        "Zaawansowane statystyki zawodników",
+        "Personalizowana strona drużyny (edycja układu i kolorów)",
+        "Powiadomienia SMS dla zawodników",
+        "Integracja z kalendarzem (Google Calendar)",
       ],
     },
     {
-      name: "Team Starter",
+      name: "Elite Club",
       description:
-        "Idealne dla małych drużyn, które potrzebują podstawowych narzędzi do zarządzania.",
-      monthlyPrice: 49,
-      yearlyPrice: 499,
+        "Dla profesjonalnych drużyn, które potrzebują kompleksowego narzędzia z pełną personalizacją i zaawansowanymi funkcjami.",
+      monthlyPrice: 199,
+      yearlyPrice: 1199,
       functions: [
-        "Zarządzanie drużyną (do 15 zawodników)",
-        "Terminarz meczów (do 10 wydarzeń)",
-        "Podstawowe statystyki zawodników",
-        "Podstawowa strona drużyny (szablon)",
-        "Powiadomienia e-mail o nadchodzących meczach",
+        "Wszystkie funkcje z Pro Squad",
+        "Zarządzanie drużyną (bez limitu zawodników)",
+        "Profesjonalna strona drużyny (własna domena, pełna personalizacja)",
+        "Analizy i raporty z meczów (zaawansowane wykresy, analiza wyników)",
+        "Moduł zarządzania sponsorami",
+        "Priorytetowe wsparcie techniczne 24/7",
+        "Integracja z social media (automatyczne posty o wynikach)",
       ],
     },
   ];
@@ -84,21 +88,21 @@ const PricingSection = () => {
             key={index}
             isPressable
             onPress={() => console.log("Click")}
-            className="bg-transparent border-2 border-primary-100"
+            className="bg-transparent border-2 border-primary-100 w-1/3"
           >
-            <CardBody className="flex flex-col justify-center text-center text-default-100 p-6 hover:bg-primary-100 hover:text-default-800">
+            <CardBody className="flex flex-col  justify-start text-center text-default-100 p-6 hover:bg-primary-100 hover:text-default-800">
               <h6 className="text-primary mb-2">{plan.name}</h6>
-              <p className="text-small-light">{plan.description}</p>
+              <p className="text-small-light min-h-12">{plan.description}</p>
               <h1 className="my-6">
                 {isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
                 <span className="font-light text-xl text-default-500">zł</span>
               </h1>
               {isMonthly ? null : (
-                <div className="w-full flex justify-center items-center bg-primary rounded-full gap-2 mb-6">
+                <div className="w-full flex justify-center items-center bg-primary rounded-full gap-2 mb-6 py-2">
                   <h1 className="font-light text-xl text-default-200">
                     Oszczędzasz
                   </h1>
-                  <h3>{plan.monthlyPrice * 12 - plan.yearlyPrice}</h3>
+                  <h5>{plan.monthlyPrice * 12 - plan.yearlyPrice}</h5>
                   <h1 className="font-light text-xl text-default-200">zł</h1>
                 </div>
               )}
