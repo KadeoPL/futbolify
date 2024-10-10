@@ -73,7 +73,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-default-background pt-6">
         <p className="text-small-light">
-          © 2024 Relume. Wszelkie prawa zastrzeżone.
+          © 2024 Futbolify. Wszelkie prawa zastrzeżone.
         </p>
         <Link
           className="font-light text-[14px] text-default-background underline"
