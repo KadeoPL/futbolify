@@ -88,7 +88,7 @@ const PricingSection = () => {
             key={index}
             isPressable
             onPress={() => console.log("Click")}
-            className="bg-transparent border-2 border-primary-100 w-1/3"
+            className="bg-transparent border-2 border-primary-100 w-full md:w-1/3"
           >
             <CardBody className="flex flex-col  justify-start text-center text-default-100 p-6 hover:bg-primary-100 hover:text-default-800">
               <h6 className="text-primary mb-2">{plan.name}</h6>

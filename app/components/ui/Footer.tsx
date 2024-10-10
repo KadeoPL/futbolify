@@ -1,4 +1,4 @@
-import { Divider, Link } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 import React from "react";
 
 export default function Footer() {
@@ -21,12 +21,12 @@ export default function Footer() {
     },
   ];
   return (
-    <footer className="mt-16">
-      <div className="flex flex-col md:flex-row justify-between items-center">
+    <footer className="mt-16 divide-y divide-default-background ">
+      <div className="flex flex-col md:flex-row md:justify-between gap-10 md:gap-0 items-center pb-6">
         <div>
-          <h4>Fubolify</h4>
+          <h6>Fubolify</h6>
         </div>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto items-center ">
           {menuItems.map((item, index) => (
             <Link
               href={item.href}
@@ -71,8 +71,29 @@ export default function Footer() {
           </svg>
         </div>
       </div>
-      <Divider className="my-4" />
-      <div></div>
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-default-background pt-6">
+        <p className="text-small-light">
+          © 2024 Relume. Wszelkie prawa zastrzeżone.
+        </p>
+        <Link
+          className="font-light text-[14px] text-default-background underline"
+          href="#"
+        >
+          Polityka prywatności
+        </Link>
+        <Link
+          className="font-light text-[14px] text-default-background underline"
+          href="#"
+        >
+          Warunki korzystania
+        </Link>
+        <Link
+          className="font-light text-[14px] text-default-background underline"
+          href="#"
+        >
+          Ustawienia cookies
+        </Link>
+      </div>
     </footer>
   );
 }
