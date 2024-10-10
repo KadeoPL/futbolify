@@ -106,6 +106,7 @@ const PricingSection = () => {
                   <h1 className="font-light text-xl text-default-200">zł</h1>
                 </div>
               )}
+
               <ul className="text-left">
                 {plan.functions.map((func, index) => (
                   <li key={index} className="flex gap-2 items-center mb-2">
