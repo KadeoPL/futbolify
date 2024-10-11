@@ -71,7 +71,7 @@ export default function Footer() {
           </svg>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-default-background pt-6">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-default-background py-6">
         <p className="text-small-light">
           © 2024 Futbolify. Wszelkie prawa zastrzeżone.
         </p>

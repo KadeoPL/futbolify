@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 
 function FunctionsSection() {
   return (
-    <section id="#function" className="flex flex-col text-center mt-32">
+    <section id="function" className="flex flex-col text-center mt-32">
       <div className="flex flex-col w-full md:w-1/2 mx-auto">
         <h2>Kluczowe funkcje, które ułatwiają zarządzanie</h2>
         <p className="text-regular-normal mt-5">

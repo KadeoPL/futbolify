@@ -118,57 +118,53 @@ body {
   .text-tiny-bold {
     @apply font-bold text-[12px] leading-[120%];
   }
-
 }
 
 @layer base {
   h1 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[40px]
     leading-[120%]
-    md:text-[56px]
+    md:text-[56px];
   }
 
   h2 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[36px]
     leading-[120%]
-    md:text-[48px]
+    md:text-[48px];
   }
 
   h3 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[32px]
     leading-[120%]
-    md:text-[40px]
+    md:text-[40px];
   }
 
   h4 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[24px]
     leading-[140%]
     md:text-[32px]
-    md:leading-[130%]
+    md:leading-[130%];
   }
 
   h5 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[20px]
     leading-[140%]
-    md:text-[24px]
+    md:text-[24px];
   }
 
   h6 {
-    @apply
-    font-bold
+    @apply font-bold
     text-[18px]
     leading-[140%]
-    md:text-[20px]
+    md:text-[20px];
   }
 
+  html {
+    @apply scroll-smooth;
+  }
 }

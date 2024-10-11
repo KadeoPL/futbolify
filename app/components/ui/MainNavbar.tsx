@@ -11,7 +11,6 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import ScrollTo from "react-scroll-into-view";
 
 const MainNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -54,9 +53,7 @@ const MainNavbar = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={index}>
-            <ScrollTo selector={item.href}>
-              <Link href={item.href}>{item.text}</Link>
-            </ScrollTo>
+            <Link href={item.href}>{item.text}</Link>
           </NavbarItem>
         ))}
       </NavbarContent>
@@ -73,9 +70,7 @@ const MainNavbar = () => {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={index}>
-            <ScrollTo selector={item.href}>
-              <Link href={item.href}>{item.text}</Link>
-            </ScrollTo>
+            <Link href={item.href}>{item.text}</Link>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

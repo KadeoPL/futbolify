@@ -60,7 +60,7 @@ const PricingSection = () => {
     },
   ];
   return (
-    <section className="flex flex-col text-center mt-32">
+    <section id="pricing" className="flex flex-col text-center mt-32">
       <div className="w-full md:w-1/2 mx-auto">
         <h2>Elastyczne plany cenowe dla każdego klubu</h2>
       </div>
