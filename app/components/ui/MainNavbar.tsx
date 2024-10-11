@@ -46,7 +46,9 @@ const MainNavbar = () => {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">Fubolify</p>
+          <Link href="/" className="font-bold text-background">
+            Futbolify
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -59,10 +61,10 @@ const MainNavbar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden md:flex">
-          <Link href="#">Zaloguj się</Link>
+          <Link href="/signin">Zaloguj się</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="solid">
+          <Button as={Link} color="primary" href="/signup" variant="solid">
             Załóż konto
           </Button>
         </NavbarItem>
