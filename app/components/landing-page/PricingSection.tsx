@@ -47,7 +47,7 @@ const PricingSection = () => {
       description:
         "Dla profesjonalnych drużyn, które potrzebują kompleksowego narzędzia z pełną personalizacją i zaawansowanymi funkcjami.",
       monthlyPrice: 199,
-      yearlyPrice: 1199,
+      yearlyPrice: 1999,
       functions: [
         "Wszystkie funkcje z Pro Squad",
         "Zarządzanie drużyną (bez limitu zawodników)",
