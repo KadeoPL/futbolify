@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/system";
 import MainNavbar from "@/app/components/ui/MainNavbar";
+import Footer from "./components/ui/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main>
             <MainNavbar />
             {children}
+            <Footer />
           </main>
         </NextUIProvider>
       </body>

@@ -21,7 +21,7 @@ export default function Footer() {
     },
   ];
   return (
-    <footer className="mt-16 divide-y divide-default-background ">
+    <footer className="mt-16 divide-y divide-default-background px-6">
       <div className="flex flex-col md:flex-row md:justify-between gap-10 md:gap-0 items-center pb-6">
         <div>
           <h6>Fubolify</h6>

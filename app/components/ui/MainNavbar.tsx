@@ -37,7 +37,7 @@ const MainNavbar = () => {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="bg-transparent"
+      className="bg-foregroud"
       maxWidth="2xl"
     >
       <NavbarContent>
