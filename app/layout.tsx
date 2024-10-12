@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/system";
-import MainNavbar from "@/app/components/ui/MainNavbar";
-import Footer from "./components/ui/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased min-h-screen w-full`}>
         <NextUIProvider>
-          <main>
-            <MainNavbar />
-            {children}
-            <Footer />
-          </main>
+          <main>{children}</main>
         </NextUIProvider>
       </body>
     </html>
