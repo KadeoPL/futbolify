@@ -61,10 +61,10 @@ const MainNavbar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden md:flex">
-          <Link href="/signin">Zaloguj się</Link>
+          <Link href="/login">Zaloguj się</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/signup" variant="solid">
+          <Button as={Link} color="primary" href="/register" variant="solid">
             Załóż konto
           </Button>
         </NavbarItem>
