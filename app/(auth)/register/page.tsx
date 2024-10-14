@@ -32,7 +32,7 @@ const GoogleIcon = () => {
   );
 };
 
-function Signup() {
+function Register() {
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   return (
     <div className="md:min-h-screen w-full flex md:flex-row flex-col">
@@ -139,4 +139,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Register;
