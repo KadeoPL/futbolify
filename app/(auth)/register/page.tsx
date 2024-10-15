@@ -2,6 +2,25 @@
 import React from "react";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Eye, EyeClosed } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const RegisterSchema = z.object({
+  firstname: z.string().min(3, { message: "Wpisz poprawne imię" }),
+  lastname: z.string().min(3, { message: "Wpisz poprawne nazwisko" }),
+  email: z.string().email({ message: "Wpisz poprawny adres e-mail" }),
+  phonenumber: z
+    .number()
+    .min(9, { message: "Proszę wpisać poprawny numer telefonu" })
+    .nonnegative({ message: '"Proszę wpisać poprawny numer telefonu"' })
+    .optional(),
+  password: z
+    .string()
+    .min(8, { message: "Hasło nie może być krótsze niż 8 znaków" }),
+});
+
+type RegisterSchemaType = z.infer<typeof RegisterSchema>;
 
 const GoogleIcon = () => {
   return (
@@ -33,7 +52,14 @@ const GoogleIcon = () => {
 };
 
 function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
+
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+
   return (
     <div className="md:min-h-screen w-full flex md:flex-row flex-col">
       <div className="md:min-h-screen md:w-1/2 w-full">
@@ -53,7 +79,7 @@ function Register() {
       <div className="md:min-h-screen flex flex-col justify-center items-center md:w-1/2 w-full bg-background text-foreground">
         <div className="md:w-1/2 w-full mx-auto p-10 md:p-0">
           <h1>Stwórz konto</h1>
-          <div className="flex flex-col gap-6 mt-10">
+          <form className="flex flex-col gap-6 mt-10">
             <Input
               type="text"
               variant="underlined"
@@ -71,8 +97,6 @@ function Register() {
               variant="underlined"
               label="Email"
               placeholder="Wpisz swój e-mail"
-              isRequired
-              isInvalid={true}
               errorMessage="Wpisz poprawny adres e-mail"
             />
             <Input
@@ -82,7 +106,6 @@ function Register() {
               variant="underlined"
               label="Telefon"
               placeholder="Wpisz swój numer telefonu"
-              isRequired
               className="appearance-none"
             />
             <Input
@@ -102,9 +125,8 @@ function Register() {
               variant="underlined"
               label="Hasło"
               placeholder="Wpisz swoje hasło"
-              isRequired
             />
-          </div>
+          </form>
           <Button color="primary" className="mt-10 w-full">
             Stwórz konto
           </Button>
