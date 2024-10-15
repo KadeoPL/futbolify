@@ -67,11 +67,13 @@ function Register() {
               placeholder="Wpisz swoje nazwisko"
             />
             <Input
-              type="text"
+              type="email"
               variant="underlined"
               label="Email"
               placeholder="Wpisz swój e-mail"
               isRequired
+              isInvalid={true}
+              errorMessage="Wpisz poprawny adres e-mail"
             />
             <Input
               type="number"

@@ -60,6 +60,8 @@ function Login() {
               label="Email"
               placeholder="Wpisz swój e-mail"
               isRequired
+              isInvalid={true}
+              errorMessage="Wpisz poprawny adres e-mail"
             />
             <Input
               endContent={
