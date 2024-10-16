@@ -7,17 +7,30 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterSchema = z.object({
-  firstname: z.string().min(3, { message: "Wpisz poprawne imię" }),
-  lastname: z.string().min(3, { message: "Wpisz poprawne nazwisko" }),
-  email: z.string().email({ message: "Wpisz poprawny adres e-mail" }),
+  firstname: z.string().min(3, "Wpisz poprawne imię"),
+  lastname: z.string().min(3, "Wpisz poprawne nazwisko"),
+  email: z.string().email("Wpisz poprawny adres e-mail"),
   phonenumber: z
     .number()
-    .min(9, { message: "Proszę wpisać poprawny numer telefonu" })
-    .nonnegative({ message: '"Proszę wpisać poprawny numer telefonu"' })
+    .min(9, "Proszę wpisać poprawny numer telefonu")
+    .nonnegative("Proszę wpisać poprawny numer telefonu")
     .optional(),
   password: z
     .string()
-    .min(8, { message: "Hasło nie może być krótsze niż 8 znaków" }),
+    .min(8, "Hasło nie może być krótsze niż 8 znaków")
+    .regex(
+      new RegExp(".*[a-z].*"),
+      "Hasło musi zawierać minimum jedną małą literę"
+    )
+    .regex(
+      new RegExp(".*[A-Z].*"),
+      "Hasło musi zawierać minimum jedną dużą literę"
+    )
+    .regex(new RegExp(".*\\d.*"), "Hasło musi zawierać minimum jedną cyfrę")
+    .regex(
+      new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
+      "Hasło musi zawierać minimum jeden znak specjalny"
+    ),
 });
 
 type RegisterSchemaType = z.infer<typeof RegisterSchema>;
