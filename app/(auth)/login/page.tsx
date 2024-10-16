@@ -2,6 +2,16 @@
 import React from "react";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Eye, EyeClosed } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const LoginSchema = z.object({
+  email: z.string().email("Wpisz poprawny adres e-mail"),
+  password: z.string().min(8, "To pole nie może być puste"),
+});
+
+type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 const GoogleIcon = () => {
   return (
@@ -33,6 +43,20 @@ const GoogleIcon = () => {
 };
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<LoginSchemaType>({
+    resolver: zodResolver(LoginSchema),
+  });
+
+  const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
+    console.log(data);
+    reset();
+  };
+
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   return (
     <div className="md:min-h-screen w-full flex md:flex-row flex-col">
@@ -53,15 +77,18 @@ function Login() {
       <div className="md:min-h-screen flex flex-col justify-center items-center md:w-1/2 w-full bg-background text-foreground">
         <div className="md:w-1/2 w-full mx-auto p-10 md:p-0">
           <h1>Zaloguj się</h1>
-          <div className="flex flex-col gap-6 mt-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-6 mt-10"
+          >
             <Input
               type="email"
               variant="underlined"
               label="Email"
               placeholder="Wpisz swój e-mail"
-              isRequired
-              isInvalid={true}
-              errorMessage="Wpisz poprawny adres e-mail"
+              {...register("email")}
+              isInvalid={!!errors.email}
+              errorMessage={errors.email?.message}
             />
             <Input
               endContent={
@@ -80,12 +107,15 @@ function Login() {
               variant="underlined"
               label="Hasło"
               placeholder="Wpisz swoje hasło"
-              isRequired
+              {...register("password")}
+              isInvalid={!!errors.password}
+              errorMessage={errors.password?.message}
             />
-          </div>
-          <Button color="primary" className="mt-10 w-full">
-            Zaloguj się
-          </Button>
+            <Button type="submit" color="primary" className="mt-10 w-full">
+              Zaloguj się
+            </Button>
+          </form>
+
           <div className="mt-5">
             <div className="flex items-center">
               <div className="w-full h-[1px] bg-foreground-400" />
