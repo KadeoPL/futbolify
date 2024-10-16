@@ -2,7 +2,7 @@
 import React from "react";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Eye, EyeClosed } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -11,25 +11,24 @@ const RegisterSchema = z.object({
   lastname: z.string().min(3, "Wpisz poprawne nazwisko"),
   email: z.string().email("Wpisz poprawny adres e-mail"),
   phonenumber: z
-    .number()
+    .string()
     .min(9, "Proszę wpisać poprawny numer telefonu")
-    .nonnegative("Proszę wpisać poprawny numer telefonu")
     .optional(),
   password: z
     .string()
     .min(8, "Hasło nie może być krótsze niż 8 znaków")
     .regex(
       new RegExp(".*[a-z].*"),
-      "Hasło musi zawierać minimum jedną małą literę"
+      "Hasło musi zawierać minimum jedną małą literę",
     )
     .regex(
       new RegExp(".*[A-Z].*"),
-      "Hasło musi zawierać minimum jedną dużą literę"
+      "Hasło musi zawierać minimum jedną dużą literę",
     )
     .regex(new RegExp(".*\\d.*"), "Hasło musi zawierać minimum jedną cyfrę")
     .regex(
       new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
-      "Hasło musi zawierać minimum jeden znak specjalny"
+      "Hasło musi zawierać minimum jeden znak specjalny",
     ),
 });
 
@@ -69,7 +68,13 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
+
+  const onSubmit: SubmitHandler<RegisterSchemaType> = (data) => {
+    console.log(data);
+    reset();
+  };
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
@@ -92,34 +97,46 @@ function Register() {
       <div className="md:min-h-screen flex flex-col justify-center items-center md:w-1/2 w-full bg-background text-foreground">
         <div className="md:w-1/2 w-full mx-auto p-10 md:p-0">
           <h1>Stwórz konto</h1>
-          <form className="flex flex-col gap-6 mt-10">
+          <form
+            className="flex flex-col gap-6 mt-10"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Input
               type="text"
               variant="underlined"
               label="Imię"
               placeholder="Wpisz swoje imię"
+              {...register("firstname")}
+              isInvalid={!!errors.firstname}
+              errorMessage={errors.firstname?.message}
             />
             <Input
               type="text"
               variant="underlined"
               label="Nazwisko"
               placeholder="Wpisz swoje nazwisko"
+              {...register("lastname")}
+              isInvalid={!!errors.lastname}
+              errorMessage={errors.lastname?.message}
             />
             <Input
               type="email"
               variant="underlined"
               label="Email"
               placeholder="Wpisz swój e-mail"
-              errorMessage="Wpisz poprawny adres e-mail"
+              {...register("email")}
+              isInvalid={!!errors.email}
+              errorMessage={errors.email?.message}
             />
             <Input
-              type="number"
-              min={0}
-              minLength={9}
+              type="text"
               variant="underlined"
               label="Telefon"
               placeholder="Wpisz swój numer telefonu"
               className="appearance-none"
+              {...register("phonenumber")}
+              isInvalid={!!errors.phonenumber}
+              errorMessage={errors.phonenumber?.message}
             />
             <Input
               endContent={
@@ -138,11 +155,14 @@ function Register() {
               variant="underlined"
               label="Hasło"
               placeholder="Wpisz swoje hasło"
+              {...register("password")}
+              isInvalid={!!errors.password}
+              errorMessage={errors.password?.message}
             />
+            <Button type="submit" color="primary" className="mt-10 w-full">
+              Stwórz konto
+            </Button>
           </form>
-          <Button color="primary" className="mt-10 w-full">
-            Stwórz konto
-          </Button>
           <div className="mt-5">
             <div className="flex items-center">
               <div className="w-full h-[1px] bg-foreground-400" />
