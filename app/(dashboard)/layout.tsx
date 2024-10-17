@@ -1,6 +1,6 @@
 import React from "react";
 
-function Layout(props) {
+function Layout() {
   return <div></div>;
 }
 
