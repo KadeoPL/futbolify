@@ -5,6 +5,7 @@ import { Eye, EyeClosed } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const RegisterSchema = z.object({
   firstname: z.string().min(3, "Wpisz poprawne imię"),
@@ -71,8 +72,26 @@ function Register() {
     reset,
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
 
-  const onSubmit: SubmitHandler<RegisterSchemaType> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<RegisterSchemaType> = async (data) => {
+    try {
+      await axios.post(
+        "api/register",
+        {
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          phonenumber: data.phonenumber,
+          password: data.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    } catch (error) {
+      console.error("Error:", error);
+    }
     reset();
   };
 
