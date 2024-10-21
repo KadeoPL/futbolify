@@ -8,10 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 const RegisterSchema = z.object({
-  firstname: z.string().min(3, "Wpisz poprawne imię"),
-  lastname: z.string().min(3, "Wpisz poprawne nazwisko"),
+  firstName: z.string().min(3, "Wpisz poprawne imię"),
+  lastName: z.string().min(3, "Wpisz poprawne nazwisko"),
   email: z.string().email("Wpisz poprawny adres e-mail"),
-  phonenumber: z
+  phoneNumber: z
     .string()
     .min(9, "Proszę wpisać poprawny numer telefonu")
     .optional(),
@@ -77,10 +77,10 @@ function Register() {
       await axios.post(
         "api/register",
         {
-          firstname: data.firstname,
-          lastname: data.lastname,
+          firstName: data.firstName,
+          lastName: data.lastName,
           email: data.email,
-          phonenumber: data.phonenumber,
+          phoneNumber: data.phoneNumber,
           password: data.password,
         },
         {
@@ -125,18 +125,18 @@ function Register() {
               variant="underlined"
               label="Imię"
               placeholder="Wpisz swoje imię"
-              {...register("firstname")}
-              isInvalid={!!errors.firstname}
-              errorMessage={errors.firstname?.message}
+              {...register("firstName")}
+              isInvalid={!!errors.firstName}
+              errorMessage={errors.firstName?.message}
             />
             <Input
               type="text"
               variant="underlined"
               label="Nazwisko"
               placeholder="Wpisz swoje nazwisko"
-              {...register("lastname")}
-              isInvalid={!!errors.lastname}
-              errorMessage={errors.lastname?.message}
+              {...register("lastName")}
+              isInvalid={!!errors.lastName}
+              errorMessage={errors.lastName?.message}
             />
             <Input
               type="email"
@@ -153,9 +153,9 @@ function Register() {
               label="Telefon"
               placeholder="Wpisz swój numer telefonu"
               className="appearance-none"
-              {...register("phonenumber")}
-              isInvalid={!!errors.phonenumber}
-              errorMessage={errors.phonenumber?.message}
+              {...register("phoneNumber")}
+              isInvalid={!!errors.phoneNumber}
+              errorMessage={errors.phoneNumber?.message}
             />
             <Input
               endContent={
