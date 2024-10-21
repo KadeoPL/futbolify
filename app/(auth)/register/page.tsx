@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const RegisterSchema = z.object({
   firstName: z.string().min(3, "Wpisz poprawne imię"),
@@ -69,8 +70,9 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
+
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<RegisterSchemaType> = async (data) => {
     try {
@@ -89,13 +91,22 @@ function Register() {
           },
         },
       );
+      router.push("/login");
     } catch (error) {
-      console.error("Error:", error);
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.data) {
+          setErrorMessage(error.response.data.message);
+        } else {
+          setErrorMessage("Unexpected error:" + error.message);
+        }
+      } else {
+        setErrorMessage("An unexpected error occurred:" + error);
+      }
     }
-    reset();
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   return (
     <div className="md:min-h-screen w-full flex md:flex-row flex-col">
@@ -178,6 +189,11 @@ function Register() {
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
             />
+            {errorMessage && (
+              <div className="text-small-semibold bg-red-500 rounded-lg text-white py-4 px-4">
+                {errorMessage}
+              </div>
+            )}
             <Button type="submit" color="primary" className="mt-10 w-full">
               Stwórz konto
             </Button>

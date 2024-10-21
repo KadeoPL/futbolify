@@ -8,7 +8,18 @@ export async function POST(request: NextRequest) {
 
   if (!firstName || !lastName || !email || !phoneNumber || !password) {
     return NextResponse.json(
-      { message: "All fields are required" },
+      { message: "Wszystkie pola są wymagane." },
+      { status: 400 },
+    );
+  }
+
+  const existingUser = await prisma.user.findUnique({
+    where: { email: email },
+  });
+
+  if (existingUser) {
+    return NextResponse.json(
+      { message: "Ten adres e-mail jest już zajęty." },
       { status: 400 },
     );
   }
