@@ -5,6 +5,7 @@ import { Eye, EyeClosed } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { login } from "@/app/utils/login";
 
 const LoginSchema = z.object({
   email: z.string().email("Wpisz poprawny adres e-mail"),
@@ -47,14 +48,12 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
+    await login(data);
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);

@@ -1,38 +1,43 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import bcrypt from "bcrypt";
 import { prisma } from "@/prisma/prisma";
-// Your own logic for dealing with plaintext password strings; be careful!
-// import { saltAndHashPassword } from "@/utils/password";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
   providers: [
-    // Credentials({
-    //   // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-    //   // e.g. domain, username, password, 2FA token, etc.
-    //   credentials: {
-    //     email: {},
-    //     password: {},
-    //   },
-    //   authorize: async (credentials) => {
-    //     let user = null;
-    //
-    //     // logic to salt and hash password
-    //     const pwHash = saltAndHashPassword(credentials.password);
-    //
-    //     // logic to verify if the user exists
-    //     user = await getUserFromDb(credentials.email, pwHash);
-    //
-    //     if (!user) {
-    //       // No user found, so this is their first attempt to login
-    //       // meaning this is also the place you could do registration
-    //       throw new Error("User not found.");
-    //     }
-    //
-    //     // return user object with their profile data
-    //     return user;
-    //   },
-    // }),
+    Credentials({
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        if (
+          !credentials ||
+          typeof credentials.email !== "string" ||
+          typeof credentials.password !== "string"
+        ) {
+          throw new Error("Invalid credentials");
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
+
+        if (!user) {
+          throw new Error("User not found.");
+        }
+
+        const isValidPassword = await bcrypt.compare(
+          credentials.password,
+          user.password || "",
+        );
+
+        if (!isValidPassword) {
+          throw new Error("Invalid password");
+        }
+        console.log(user);
+        return user;
+      },
+    }),
   ],
 });
