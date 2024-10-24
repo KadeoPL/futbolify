@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { login } from "@/app/utils/login";
+import { useRouter } from "next/navigation";
 
 const LoginSchema = z.object({
   email: z.string().email("Wpisz poprawny adres e-mail"),
@@ -45,7 +46,7 @@ const GoogleIcon = () => {
 
 function Login() {
   const [errorMessage, setErrorMessage] = React.useState("");
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -54,16 +55,12 @@ function Login() {
     resolver: zodResolver(LoginSchema),
   });
 
-  // const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
-  //   await login(data);
-  // };
-
   const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
     const result = await login(data);
     if (result?.error) {
-      setErrorMessage(result.error);
+      setErrorMessage("Niepoprawny login lub hasło.");
     } else {
-      console.log("ok");
+      router.push("/");
     }
   };
 

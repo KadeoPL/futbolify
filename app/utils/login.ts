@@ -6,20 +6,15 @@ interface LoginData {
 }
 
 export async function login(data: LoginData) {
-  try {
-    const result = await signIn("credentials", {
-      redirect: false, // Zapobieganie przekierowaniu
-      email: data.email,
-      password: data.password,
-    });
+  const result = await signIn("credentials", {
+    redirect: false,
+    email: data.email,
+    password: data.password,
+  });
 
-    if (result?.error) {
-      throw new Error(result.error);
-    }
-
+  if (result) {
     return result;
-  } catch (error: any) {
-    console.log(error);
-    return { error: error.message };
+  } else {
+    return null;
   }
 }
