@@ -44,6 +44,8 @@ const GoogleIcon = () => {
 };
 
 function Login() {
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const {
     register,
     handleSubmit,
@@ -52,8 +54,17 @@ function Login() {
     resolver: zodResolver(LoginSchema),
   });
 
+  // const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
+  //   await login(data);
+  // };
+
   const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
-    await login(data);
+    const result = await login(data);
+    if (result?.error) {
+      setErrorMessage(result.error);
+    } else {
+      console.log("ok");
+    }
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
@@ -110,6 +121,11 @@ function Login() {
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
             />
+            {errorMessage && (
+              <div className="text-small-semibold bg-red-500 rounded-lg text-white py-4 px-4">
+                {errorMessage}
+              </div>
+            )}
             <Button type="submit" color="primary" className="mt-10 w-full">
               Zaloguj się
             </Button>
